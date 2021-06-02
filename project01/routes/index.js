@@ -9,7 +9,6 @@ router.get('/board', function(req, res, next){
 router.post('/board', function (req, res, next) {
     console.log("req : "+ req.body.title)
     models.post.create({
-        
         title: req.body.title,
         author: req.body.author
     }).then(result => {
@@ -20,5 +19,6 @@ router.post('/board', function (req, res, next) {
         console.log("실페")
     })
 })
+
 
 module.exports = router;
