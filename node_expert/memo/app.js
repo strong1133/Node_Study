@@ -14,14 +14,15 @@ const router = express.Router();
 // Middle Ware
 app.use(logger("dev"));
 app.use(express.json());
+app.use(express.static("./assets"));
 
 
 // Express Route Import
-const test = require("./routes/test");
+const memo = require("./routes/memo");
 
 
 // Express Route Path
-app.use("/test", test);
+app.use("/memo", memo);
 
 
 // 404 Error
