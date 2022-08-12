@@ -4,7 +4,6 @@ const cors = require('cors');
 const logger = require('morgan');
 const { responseBody } = require("./utils/response_dto");
 
-
 //선언부
 const PORT = 8080;
 const app = express();
@@ -19,6 +18,11 @@ app.use(express.static("./assets"));
 
 // Express Route Import
 const memo = require("./routes/memo");
+
+// DB Connection
+const conn = require('./config/db');
+db = conn();
+
 
 
 // Express Route Path
