@@ -20,7 +20,7 @@ app.use(express.static("./assets"));
 const memo = require("./routes/memo");
 
 // DB Connection
-const conn = require('./config/db');
+const conn = require('./models/db');
 db = conn();
 
 

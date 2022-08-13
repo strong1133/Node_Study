@@ -1,5 +1,5 @@
 
-const db_config = require("./db_config.json");
+const db_config = require("../config/db_config.json");
 
 const conn = () => {
 
