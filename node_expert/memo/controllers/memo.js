@@ -7,6 +7,8 @@ const testCtrl = (req) => {
     return 'testCtrl Return';
 }
 
+//
+// Post Todo
 const postTodo = async (req) => {
     console.log(req);
     try {
@@ -33,9 +35,15 @@ const postTodo = async (req) => {
     } catch (e) {
         return false;
     }
+}
 
+//
+// Get Todos
+const getTodo = async (req) =>{
+    const todos = await Todo.find().sort("-order").exec();
+    return todos;
 }
 
 module.exports = {
-    testCtrl, postTodo
+    testCtrl, postTodo, getTodo
 }
