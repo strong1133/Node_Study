@@ -13,7 +13,7 @@ const responseBody = (err, value, code) => {
 
 module.exports = {
     responseBody:responseBody,
-    response_dtoJson: (err, errCode, value, res) => {
+    responseDtoJson: (err, errCode, value, res) => {
         if (err) {
             console.error("ERR :: ", err.message);
             

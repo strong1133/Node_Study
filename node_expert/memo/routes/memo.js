@@ -1,16 +1,27 @@
 var express = require('express');
 var router = express.Router();
-const { response_dtoJson } = require("../utils/response_dto");
+const { responseDtoJson } = require("../utils/response_dto");
 
-const {testCtrl} = require('../controllers/test');
+const {testCtrl, postTodo} = require('../controllers/memo');
 
 
 
 router.get('/', function (req, res, next) {
     let result =  testCtrl(req.query);
     console.log("heelo")
-    response_dtoJson(null, null, result, res);
+    responseDtoJson(null, null, result, res);
 });
 
+
+router.post('/', function (req, res, next) {
+    let result =  postTodo(req.body);
+    
+    if(result){
+        responseDtoJson(null, null, 'Success', res);
+    }else{
+        responseDtoJson(null, 500, 'Fail', res);
+    }
+    
+});
 
 module.exports = router
