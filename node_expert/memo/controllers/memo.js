@@ -40,7 +40,16 @@ const postTodo = async (req) => {
 //
 // Get Todos
 const getTodo = async (req) =>{
-    const todos = await Todo.find().sort("-order").exec();
+
+    let todos;
+
+    console.log(req);
+    if(req){
+        todos= await Todo.findById({'_id': req['id']});
+    }else{
+        todos= await Todo.find().sort("-order").exec();
+    }
+  
     return todos;
 }
 

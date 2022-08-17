@@ -11,6 +11,14 @@ router.get('/', async (req, res, next) => {
     responseDtoJson(null, null, result, res);
 });
 
+router.get('/:id', async (req, res, next) => {
+    console.log(req.params);
+    let result = await getTodo(req.params);
+    responseDtoJson(null, null, result, res);
+});
+
+
+
 
 router.post('/', async (req, res, next) => {
     let result = await postTodo(req.body);
