@@ -7,7 +7,7 @@ const { responseBody } = require("./utils/response_dto");
 //선언부
 const PORT = 8080;
 const app = express();
-const router = express.Router();
+
 
 
 // Middle Ware
@@ -18,6 +18,7 @@ app.use(express.static("./assets"));
 
 // Express Route Import
 const memo = require("./routes/memo");
+const user = require("./routes/user");
 
 // DB Connection
 const conn = require('./models/db');
@@ -27,6 +28,7 @@ db = conn();
 
 // Express Route Path
 app.use("/memo", memo);
+app.use("/user", user);
 
 
 // 404 Error

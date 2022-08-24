@@ -10,10 +10,10 @@ const testCtrl = (req) => {
 //
 // Post Todo
 const postTodo = async (req) => {
-    console.log(req);
+    // console.log(req);
     try {
         const { value } = req;
-        
+        console.log(value);
         if(!value){
             console.log("요청 값 부족");
             let err = new Error('요청 값이 잘못되었습니다.')
