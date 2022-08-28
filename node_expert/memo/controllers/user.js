@@ -1,5 +1,15 @@
 const User = require("../models/user")
 
+const getAllUser = async () => {
+
+    try {
+        let users = await User.find().sort("-order").exec();
+        return users;
+    } catch (e) {
+        return 'fail'
+    }
+}
+
 
 const register = async (req) => {
 
@@ -23,5 +33,6 @@ const register = async (req) => {
 }
 
 module.exports = {
+    getAllUser,
     register
 }
