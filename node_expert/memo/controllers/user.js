@@ -1,4 +1,7 @@
+const jwt = require("jsonwebtoken");
+
 const User = require("../models/user")
+const Secret = require("../config/secret.json");
 
 const getAllUser = async () => {
 
@@ -32,7 +35,28 @@ const register = async (req) => {
     }
 }
 
+const login = async (req) => {
+    let id = req['id'];
+    let pwd = req['password'];
+
+    const user = await User.findOne({ "id": id, "password": pwd });
+
+    console.log(user);
+
+    if (user) {
+
+    } else {
+        let err = Error("로그인 정보가 잘못되었습니다.");
+        err.code = 403;
+        return err
+    }
+
+    return 'success'
+
+}
+
 module.exports = {
     getAllUser,
-    register
+    register,
+    login
 }
