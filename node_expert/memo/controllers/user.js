@@ -1,7 +1,7 @@
-const jwt = require("jsonwebtoken");
 
 const User = require("../models/user")
-const Secret = require("../config/secret.json");
+const {sign} = require("./jwt");
+
 
 const getAllUser = async () => {
 
@@ -38,20 +38,23 @@ const register = async (req) => {
 const login = async (req) => {
     let id = req['id'];
     let pwd = req['password'];
-
+    let token;
     const user = await User.findOne({ "id": id, "password": pwd });
 
     console.log(user);
 
     if (user) {
+        token =  await sign(user);
 
+        console.log(token);
+        
     } else {
         let err = Error("로그인 정보가 잘못되었습니다.");
         err.code = 403;
         return err
     }
 
-    return 'success'
+    return {token:token};
 
 }
 
