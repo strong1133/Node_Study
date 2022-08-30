@@ -1,6 +1,6 @@
 
 const User = require("../models/user")
-const {sign} = require("./jwt");
+const {sign, verify} = require("./jwt");
 
 
 const getAllUser = async () => {
@@ -55,11 +55,16 @@ const login = async (req) => {
     }
 
     return {token:token};
+}
 
+const authCheck = async (req)=>{
+    let token = req['token']
+    return await verify(token);
 }
 
 module.exports = {
     getAllUser,
     register,
-    login
+    login,
+    authCheck
 }

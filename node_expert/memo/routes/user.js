@@ -5,7 +5,8 @@ const { responseDtoJson } = require("../utils/response_dto");
 const {
     getAllUser,
     register,
-    login
+    login,
+    authCheck
 } = require("../controllers/user")
 
 // 모든 유저 조회
@@ -29,7 +30,17 @@ router.post('/login', async (req, res, next) => {
     } else {
         responseDtoJson(null, null, result, res);
     }
+});
 
-})
+
+// 토큰 검증
+router.post('/authCheck', async (req, res, next) => {
+    let result = await authCheck(req.body);
+    if (result.code) {
+        responseDtoJson(result, result.code, null, res);
+    } else {
+        responseDtoJson(null, null, result, res);
+    }
+});
 
 module.exports = router
