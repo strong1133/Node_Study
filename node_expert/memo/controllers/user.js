@@ -1,6 +1,7 @@
 
 const User = require("../models/user")
-const {sign, verify} = require("./jwt");
+const { sign, verify } = require("./jwt");
+const { hasher } = require("../utils/hash");
 
 
 const getAllUser = async () => {
@@ -19,6 +20,11 @@ const register = async (req) => {
     try {
 
         console.log(req);
+
+        let rawPwd = req['password'];
+        let hashed = hasher(rawPwd);
+
+        req['password'] = hashed;
 
         const maxOrderByUserId = await User.findOne().sort("-order").exec();
         const order = maxOrderByUserId ? maxOrderByUserId.order + 1 : 1;
@@ -44,20 +50,20 @@ const login = async (req) => {
     console.log(user);
 
     if (user) {
-        token =  await sign(user);
+        token = await sign(user);
 
         console.log(token);
-        
+
     } else {
         let err = Error("로그인 정보가 잘못되었습니다.");
         err.code = 403;
         return err
     }
 
-    return {token:token};
+    return { token: token };
 }
 
-const authCheck = async (req)=>{
+const authCheck = async (req) => {
     let token = req['token']
     return await verify(token);
 }
