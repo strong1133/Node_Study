@@ -43,9 +43,12 @@ const register = async (req) => {
 
 const login = async (req) => {
     let id = req['id'];
-    let pwd = req['password'];
+    let rawPwd = req['password'];
+
+    let hasedPwd = hasher(rawPwd);
+
     let token;
-    const user = await User.findOne({ "id": id, "password": pwd });
+    const user = await User.findOne({ "id": id, "password": hasedPwd });
 
     console.log(user);
 
