@@ -21,6 +21,17 @@ const register = async (req) => {
 
         console.log(req);
 
+        let dupUser = await User.findOne({"id":req['id']});
+
+        console.log(dupUser);
+        
+        if(dupUser){
+            let err = Error("중복된 유저입니다.");
+            
+            err.code = 400;
+            return err
+        }
+
         let rawPwd = req['password'];
         let hashed = hasher(rawPwd);
 

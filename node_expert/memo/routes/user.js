@@ -18,7 +18,11 @@ router.get('/', async (req, res, next) => {
 // 회원가입
 router.post('/', async (req, res, next) => {
     let result = await register(req.body);
-    responseDtoJson(null, null, result, res);
+    if (result.code) {
+        responseDtoJson(result, result.code, null, res);
+    } else {
+        responseDtoJson(null, null, result, res);
+    }
 });
 
 
