@@ -1,6 +1,6 @@
 
 const User = require("../models/user")
-const { sign, verify } = require("./jwt");
+const { sign, verify } = require("../utils/jwt");
 const { hasher } = require("../utils/hash");
 
 

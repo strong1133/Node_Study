@@ -5,11 +5,12 @@ const conn = () => {
 
     let id = db_config['db']['id']
     let pwd = db_config['db']['pwd']
+    let repo = db_config['db']['repo']
 
     // console.log(id, pwd);
 
     const mongoose = require('mongoose');
-    const uri = `mongodb+srv://${id}:${pwd}@freedb.kce9t.mongodb.net/?retryWrites=true&w=majority`;
+    const uri = `mongodb+srv://${id}:${pwd}@${repo}.mongodb.net/?retryWrites=true&w=majority`;
     mongoose.connect(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -29,3 +30,4 @@ const open=()=>{
 }
 
 module.exports = conn;
+
