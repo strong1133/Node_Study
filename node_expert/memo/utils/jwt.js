@@ -18,7 +18,7 @@ const sign = async (user) => {
 const verify = async (token) => {
 
     let ressult;
-
+    token = token.replaceAll('Bearer ','');
     try {
         ressult = jwt.verify(token, Secret['secretKey']);
 

@@ -38,8 +38,8 @@ router.post('/login', async (req, res, next) => {
 
 
 // 토큰 검증
-router.post('/authCheck', async (req, res, next) => {
-    let result = await authCheck(req.body);
+router.get('/authCheck', async (req, res, next) => {
+    let result = await authCheck(req.headers);
     if (result.code) {
         responseDtoJson(result, result.code, null, res);
     } else {

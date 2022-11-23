@@ -78,7 +78,8 @@ const login = async (req) => {
 }
 
 const authCheck = async (req) => {
-    let token = req['token']
+    console.log(req)
+    let token = req['authorization']
     return await verify(token);
 }
 
